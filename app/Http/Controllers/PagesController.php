@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Blog as Blog;
 
 class PagesController extends Controller
 {
@@ -68,7 +69,8 @@ class PagesController extends Controller
 
     public function blog()
     {
-        return view('blog');
+        $blogs = Blog::latest()->paginate(6);
+        return view('blog', compact('blogs'));
     }
 
     public function error404Page()
